@@ -8,17 +8,17 @@ this script allows to handle big CSV files that can't be used directly and extra
 ## Usage : 
 the script version of it consiste of two files : main.js and helpers.js
 
-the main.js contains the main functions and the even more important CONSTANTES that will allow to configure 
+the main.js contains the main functions and the even more important the CONSTANTES that will allow to configure 
 the execution of the script such as : 
 
 - ```FILE_NAME = 'data.csv'; ```  the name of source CSV file.
-- ```RESULT_FILE_NAME  = 'users.json';```  the name of result JSON file.
-- ```COUNT_OF_RECORDS_TO_SAVE = 1517;```  the count of records to be extracted in the result json file
-- ```COUNT_OF_RECORDS_TO_SAVE = 'uid';```  the count of records to be extracted in the result json file
-- ```RECORD_UNIQUE_ATTRIBUTES = 'createdAt';```  the column's name to use as unique records id
+- ```RESULT_FILE_NAME  = 'users.json';```  the name of output JSON file.
+- ```COUNT_OF_RECORDS_TO_SAVE = 1517;```  the count of records to be extracted in the output json file
+- ```COUNT_OF_RECORDS_TO_SAVE = 'uid';```  the column's name to use as unique records id
+- ```RECORD_UNIQUE_ATTRIBUTES = 'createdAt';```  the column's name to use as sorting id 
 - ```NUMBER_OF_RECORDS_PROGRESS_DISPLAY  = 10000;```  the interval of records count to display progress in the console
 
-once the configuration done you can launch the script by :
+once the configuration done you can launch the script with commandes :
 
 ```
 - yarn
@@ -31,7 +31,7 @@ for the complexity of the main algorithm of sorting data and saving only desired
 - let **"n"** : be the number of lines in the original CSV file
 - let **"m"** : be the number of desired records to be extracted  ***COUNT_OF_RECORDS_TO_SAVE***
 
-for each line in the original file we need to sort only **"m"** records at maximum,
+for each line in the original file we need to sort only **"m"** records at maximum with complexity of **"O(m)""**,
 and only if the sortingValue is bigger than the latest element of the list.
 
 that give us a global Algorithm with the complexity of : **"O( n x m )"**
