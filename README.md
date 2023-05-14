@@ -4,17 +4,6 @@ this script allows to handle big CSV files that can't be used directly and extra
 
 **used solution** : stream reading and line by line processing
 
-please notice that this is the script version. and that two other version are available in different setups : 
-    
-- library version that can be found under : 
-    - github link :
-    - npm link : 
-  
-
-- Commande Line that can be found under :
-    - github link :
-    - npm link :
-
 
 ## Usage : 
 the script version of it consiste of two files : main.js and helpers.js

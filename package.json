@@ -1,0 +1,19 @@
+{
+  "name": "csv_to_json_extractor",
+  "version": "1.0.0",
+  "description": "exctract most recent records from larg CSV file using a unique id attribute and sorting attribute",
+  "main": "main.js",
+  "scripts": {
+    "extract": "node ."
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "node": "^20.1.0"
+  },
+  "devDependencies": {
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "prettier": "^2.8.8"
+  }
+}
