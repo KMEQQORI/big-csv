@@ -13,10 +13,6 @@ the execution of the script such as :
 
 - ```FILE_NAME = 'data.csv'; ```  the name of source CSV file.
 - ```RESULT_FILE_NAME  = 'users.json';```  the name of output JSON file.
-- ```COUNT_OF_RECORDS_TO_SAVE = 1517;```  the count of records to be extracted in the output json file
-- ```COUNT_OF_RECORDS_TO_SAVE = 'uid';```  the column's name to use as unique records id
-- ```RECORD_UNIQUE_ATTRIBUTES = 'createdAt';```  the column's name to use as sorting id 
-- ```NUMBER_OF_RECORDS_PROGRESS_DISPLAY  = 10000;```  the interval of records count to display progress in the console
 
 once the configuration done you can launch the script with commandes :
 
@@ -31,12 +27,10 @@ for the complexity of the main algorithm of sorting data and saving only desired
 - let **"n"** : be the number of lines in the original CSV file
 - let **"m"** : be the number of desired records to be extracted  ***COUNT_OF_RECORDS_TO_SAVE***
 
-for each line in the original file we need to sort only **"m"** records at maximum with complexity of **"O(m)""**,
+for each line in the original file we have direct access of records at maximum with complexity of **"O(1)""**,
 and only if the sortingValue is bigger than the latest element of the list.
 
-that give us a global Algorithm with the complexity of : **"O( n x m )"**
-
-and knowing the intended use of the script : m <<< n  which leave us with the complexity of : **"O(n)"**
+that give us a global Algorithm with the complexity of : **"O( n )"**
 
 
 
@@ -56,18 +50,15 @@ flowchart TB
     D(Headers) --> F(JSON record)
 
     F(JSON record) --> |saving the record| k{should it be add} 
-    k{should it be add} --> |No old record| R(ignore)
-    k{should it be add}  -->  |recent record| G{is unique id existe}
+    k{should it be add} --> |new to the map| R(add new element to map)
+    k{should it be add}  -->  | already in the map| G{is unique id existe}
 
-    G{is the array still free}-->  |YES : save directly | I[save]
-    G{is the array still free} --> |NO : find element to replace| l{is the array still free}
+    G{is more recent than old one}-->  |YES | I[replace]
+    G{is more recent than old one} --> |NO : ignore | l[ignore]
 
-    l{is unique id existe} --> |NO:delete oldest in list| N(add and keep sorting of array)
-    l{is unique id existe} --> |YES:delete record with same id| N(add and keep sorting of array)
-
-    I[save] --> X((List of latest records))
-    N(add and keep sorting of array) --> X((List of latest records))
-    R(ignore) --> X((List of latest records))
+    l[ignore] --> X((Map of latest records))
+    I[replace] --> X((Map of latest records))
+    R(add new element to map) --> X((Map of latest records))
 ```
 
 
